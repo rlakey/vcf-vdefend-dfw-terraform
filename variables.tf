@@ -113,6 +113,11 @@ variable "vcf_lic" {
   }
 }
 
+variable "vcf_vdefend_lic" {
+  type        = string
+  description = "vDefend License Hub VM name"
+}
+
 variable "vcf_mgmt_svcs" {
   type        = string
   description = "VCF Management Services VM name prefix"

@@ -23,6 +23,11 @@ variable "vcf_lic" {
   description = "VCF License Server VM names"
 }
 
+variable "vcf_vdefend_lic" {
+  type        = string
+  description = "vDefend License Hub VM name"
+}
+
 variable "vcfops_cp" {
   type        = list(string)
   description = "VCF Operations Cloud Proxy VM names"

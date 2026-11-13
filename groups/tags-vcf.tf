@@ -9,7 +9,7 @@ resource "nsxt_policy_vm_tags" "vcf_ops_tags" {
   instance_id = each.value.id
 
   dynamic "tag" {
-    for_each = merge(local.common_tags, { application = "vcf-operations" })
+    for_each = merge(local.vcf_common_tags_m01, { application = "vcf-operations" })
     content {
       scope = tag.key
       tag   = tag.value
@@ -28,7 +28,7 @@ resource "nsxt_policy_vm_tags" "vcf_ops_cp_tags" {
   instance_id = each.value.id
 
   dynamic "tag" {
-  for_each = merge(local.common_tags, { application = "vcf-operations-proxy" })
+  for_each = merge(local.vcf_common_tags_m01, { application = "vcf-operations-proxy" })
   content {
     scope = tag.key
     tag   = tag.value
@@ -47,7 +47,28 @@ resource "nsxt_policy_vm_tags" "vcf_license_tags" {
   instance_id = each.value.id
 
   dynamic "tag" {
-    for_each = merge(local.common_tags, { application = "vcf-license" })
+    for_each = merge(local.vcf_common_tags_m01, { application = "vcf-license" })
+    content {
+      scope = tag.key
+      tag   = tag.value
+    }
+  }
+}
+
+# Tag VCF vDefend License Hub VMs
+data "nsxt_policy_vm" "vcf_vdefend_lic" {
+  # If the variable is valid, coalesce returns the variable name.
+  # If the variable is null or "", coalesce returns "SKIP".
+  count        = coalesce(var.vcf_vdefend_lic, "SKIP") != "SKIP" ? 1 : 0
+  display_name = var.vcf_vdefend_lic
+}
+
+resource "nsxt_policy_vm_tags" "vcf_vdefend_lic_tags" {
+  count       = coalesce(var.vcf_vdefend_lic, "SKIP") != "SKIP" ? 1 : 0
+  instance_id = data.nsxt_policy_vm.vcf_vdefend_lic[0].id
+
+  dynamic "tag" {
+    for_each = merge(local.vcf_common_tags_m01, { application = "vcf-vdefend-license" })
     content {
       scope = tag.key
       tag   = tag.value
@@ -66,7 +87,7 @@ resource "nsxt_policy_vm_tags" "vcf_sddcmgr_tags" {
   instance_id = each.value.id
 
   dynamic "tag" {
-    for_each = merge(local.common_tags, { application = "vcf-sddcmgr" })
+    for_each = merge(local.vcf_common_tags_m01, { application = "vcf-sddcmgr" })
     content {
       scope = tag.key
       tag   = tag.value
@@ -85,7 +106,7 @@ resource "nsxt_policy_vm_tags" "vcf_automation_tags" {
   instance_id = each.value
 
   dynamic "tag" {
-    for_each = merge(local.common_tags, { application = "vcf-automation" })
+    for_each = merge(local.vcf_common_tags_m01, { application = "vcf-automation" })
     content {
       scope = tag.key
       tag   = tag.value
@@ -104,7 +125,7 @@ resource "nsxt_policy_vm_tags" "vcf_mgmt_svcs_tags" {
   instance_id = each.value
 
   dynamic "tag" {
-    for_each = merge(local.common_tags, { application = "vcf-mgmt-svcs" })
+    for_each = merge(local.vcf_common_tags_m01, { application = "vcf-mgmt-svcs" })
     content {
       scope = tag.key
       tag   = tag.value
@@ -123,7 +144,7 @@ resource "nsxt_policy_vm_tags" "vcfops_net_platform_tags" {
   instance_id = each.value.id
 
   dynamic "tag" {
-    for_each = merge(local.common_tags, { application = "vcf-operations-net-platform" })
+    for_each = merge(local.vcf_common_tags_m01, { application = "vcf-operations-net-platform" })
     content {
       scope = tag.key
       tag   = tag.value
@@ -142,7 +163,7 @@ resource "nsxt_policy_vm_tags" "vcfops_net_collector_tags" {
   instance_id = each.value.id
 
   dynamic "tag" {
-    for_each = merge(local.common_tags, { application = "vcf-operations-net-collector" })
+    for_each = merge(local.vcf_common_tags_m01, { application = "vcf-operations-net-collector" })
     content {
       scope = tag.key
       tag   = tag.value
@@ -159,7 +180,7 @@ resource "nsxt_policy_vm_tags" "vcf_m01_vc_tags" {
   instance_id = data.nsxt_policy_vm.vcf_m01_vc.id
 
   dynamic "tag" {
-    for_each = merge(local.common_tags, { application = "vcf-m01-vcenter" })
+    for_each = merge(local.vcf_common_tags_m01, { application = "vcf-m01-vcenter" })
     content {
       scope = tag.key
       tag   = tag.value
@@ -178,7 +199,7 @@ resource "nsxt_policy_vm_tags" "vcf_m01_nsxmgr_tags" {
   instance_id = each.value.id
 
   dynamic "tag" {
-    for_each = merge(local.common_tags, { application = "vcf-m01-nsxmgr" })
+    for_each = merge(local.vcf_common_tags_m01, { application = "vcf-m01-nsxmgr" })
     content {
       scope = tag.key
       tag   = tag.value

@@ -40,6 +40,20 @@ resource "nsxt_policy_group" "sg-vcf-license" {
   }
 }
 
+resource "nsxt_policy_group" "sg-vcf-vdefend-license" {
+  nsx_id       = "sg-vcf-vdefend-license"
+  display_name = "sg-vcf-vdefend-license"
+
+  criteria {
+    condition {
+      member_type = "VirtualMachine"
+      key         = "Tag"
+      operator    = "EQUALS"
+      value       = "application|vcf-vdefend-license"
+    }
+  }
+}
+
 resource "nsxt_policy_group" "sg-vcf-automation" {
   nsx_id       = "sg-vcf-automation"
   display_name = "sg-vcf-automation"
@@ -181,7 +195,7 @@ resource "nsxt_policy_group" "sg-vcf-fleet" {
 
   criteria {
     path_expression {
-      member_paths = [nsxt_policy_group.sg-vcf-operations.path, nsxt_policy_group.sg-vcf-operations-proxy.path, nsxt_policy_group.sg-vcf-license.path, nsxt_policy_group.sg-vcf-automation.path, nsxt_policy_group.sg-vcf-mgmt-svcs.path, nsxt_policy_group.sg-vcf-sddcmgr.path]
+      member_paths = [nsxt_policy_group.sg-vcf-operations.path, nsxt_policy_group.sg-vcf-operations-proxy.path, nsxt_policy_group.sg-vcf-license.path, nsxt_policy_group.sg-vcf-license.path, nsxt_policy_group.sg-vcf-automation.path, nsxt_policy_group.sg-vcf-mgmt-svcs.path, nsxt_policy_group.sg-vcf-sddcmgr.path, nsxt_policy_group.sg-vcf-operations-net-platform.path, nsxt_policy_group.sg-vcf-operations-net-collector.path]
     }
   }
 }

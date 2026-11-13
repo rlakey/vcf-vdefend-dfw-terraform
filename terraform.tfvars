@@ -15,6 +15,7 @@ backup_server        = ""
 vcfops               = []
 vcfops_cp            = []
 vcf_lic              = []
+vcf_vdefend_lic      = ""
 vcf_mgmt_svcs        = "vcfs-"
 vcf_automation       = "vcfas-"
 vcf_sddcmgr          = []

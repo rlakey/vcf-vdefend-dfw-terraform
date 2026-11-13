@@ -30,6 +30,7 @@ module "groups" {
   vcfops                  = var.vcfops
   vcfops_cp               = var.vcfops_cp
   vcf_lic                 = var.vcf_lic
+  vcf_vdefend_lic         = var.vcf_vdefend_lic
   vcf_automation          = var.vcf_automation
   vcf_sddcmgr             = var.vcf_sddcmgr
   vcf_mgmt_svcs           = var.vcf_mgmt_svcs

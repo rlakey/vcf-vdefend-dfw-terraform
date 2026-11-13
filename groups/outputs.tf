@@ -10,6 +10,7 @@ output "group_paths" {
     sg-vcf-operations               = nsxt_policy_group.sg-vcf-operations.path
     sg-vcf-operations-proxy         = nsxt_policy_group.sg-vcf-operations-proxy.path
     sg-vcf-license                  = nsxt_policy_group.sg-vcf-license.path
+    sg-vcf-vdefend-license          = nsxt_policy_group.sg-vcf-vdefend-license.path
     sg-vcf-automation               = nsxt_policy_group.sg-vcf-automation.path
     sg-vcf-mgmt-svcs                = nsxt_policy_group.sg-vcf-mgmt-svcs.path
     sg-vcf-sddcmgr                  = nsxt_policy_group.sg-vcf-sddcmgr.path

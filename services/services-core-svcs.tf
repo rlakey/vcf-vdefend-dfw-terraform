@@ -34,6 +34,7 @@ data "nsxt_policy_service" "syslog_tcp" {
   display_name = "Syslog (TCP)"
 }
 
+# Context Profiles
 data "nsxt_policy_context_profile" "cxt_dns" {
   display_name = "DNS"
 }

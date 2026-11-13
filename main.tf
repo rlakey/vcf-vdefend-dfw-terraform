@@ -35,15 +35,15 @@ module "infrastructure" {
   source                = "./infrastructure"
   group_paths           = module.groups.group_paths
   service_paths         = module.services.service_paths
-  #context_profile_paths = module.services.context_profile_paths
+  context_profile_paths = module.services.context_profile_paths
 }
 
-module "environment" {
-  source                = "./environment"
+# module "environment" {
+#   source                = "./environment"
 
-}
+# }
 
-module "application" {
-  source                = "./application"
+# module "application" {
+#   source                = "./application"
 
-}
+# }

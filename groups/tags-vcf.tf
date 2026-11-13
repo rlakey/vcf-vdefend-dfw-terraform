@@ -112,6 +112,44 @@ resource "nsxt_policy_vm_tags" "vcf_mgmt_svcs_tags" {
   }
 }
 
+# Tag VCF Operations for Networks Platform VMs
+data "nsxt_policy_vm" "vcfops_net_platform" {
+  for_each     = toset(var.vcfops_net_platform)
+  display_name = each.value
+}
+
+resource "nsxt_policy_vm_tags" "vcfops_net_platform_tags" {
+  for_each    = data.nsxt_policy_vm.vcfops_net_platform
+  instance_id = each.value.id
+
+  dynamic "tag" {
+    for_each = merge(local.common_tags, { application = "vcf-operations-net-platform" })
+    content {
+      scope = tag.key
+      tag   = tag.value
+    }
+  }
+}
+
+# Tag VCF Operations for Networks Collector VMs
+data "nsxt_policy_vm" "vcfops_net_collector" {
+  for_each     = toset(var.vcfops_net_collector)
+  display_name = each.value
+}
+
+resource "nsxt_policy_vm_tags" "vcfops_net_collector_tags" {
+  for_each    = data.nsxt_policy_vm.vcfops_net_collector
+  instance_id = each.value.id
+
+  dynamic "tag" {
+    for_each = merge(local.common_tags, { application = "vcf-operations-net-collector" })
+    content {
+      scope = tag.key
+      tag   = tag.value
+    }
+  }
+}
+
 # Tag VCF Management Domain vCenter
 data "nsxt_policy_vm" "vcf_m01_vc" {
   display_name = var.vcf_m01_vcenter

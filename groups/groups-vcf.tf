@@ -82,6 +82,34 @@ resource "nsxt_policy_group" "sg-vcf-sddcmgr" {
   }
 }
 
+resource "nsxt_policy_group" "sg-vcf-operations-net-platform" {
+  nsx_id       = "sg-vcf-operations-net-platform"
+  display_name = "sg-vcf-operations-net-platform"
+
+  criteria {
+    condition {
+      member_type = "VirtualMachine"
+      key         = "Tag"
+      operator    = "EQUALS"
+      value       = "application|vcf-operations-net-platform"
+    }
+  }
+}
+
+resource "nsxt_policy_group" "sg-vcf-operations-net-collector" {
+  nsx_id       = "sg-vcf-operations-net-collector"
+  display_name = "sg-vcf-operations-net-collector"
+
+  criteria {
+    condition {
+      member_type = "VirtualMachine"
+      key         = "Tag"
+      operator    = "EQUALS"
+      value       = "application|vcf-operations-net-collector"
+    }
+  }
+}
+
 resource "nsxt_policy_group" "sg-vcf-m01-vcenter" {
   nsx_id       = "sg-vcf-m01-vcenter"
   display_name = "sg-vcf-m01-vcenter"

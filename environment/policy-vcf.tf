@@ -16,7 +16,7 @@ resource "nsxt_policy_security_policy" "vcf_fleet_mgmt_policy" {
     services           = []
     action             = "JUMP_TO_APPLICATION"
     logged             = true
-    sequence_number    = 0
+    sequence_number    = 10
   }
 
   rule {
@@ -27,7 +27,7 @@ resource "nsxt_policy_security_policy" "vcf_fleet_mgmt_policy" {
     services           = [var.service_paths.https]
     action             = "ALLOW"
     logged             = true
-    sequence_number    = 10
+    sequence_number    = 20
   }
 
   rule {
@@ -38,7 +38,7 @@ resource "nsxt_policy_security_policy" "vcf_fleet_mgmt_policy" {
     services           = [var.service_paths.vcf_vami_5480]
     action             = "ALLOW"
     logged             = true
-    sequence_number    = 20
+    sequence_number    = 30
   }
 
   # rule {
@@ -49,7 +49,7 @@ resource "nsxt_policy_security_policy" "vcf_fleet_mgmt_policy" {
   #   services           = [var.service_paths.vcf_ops_net_col]
   #   action             = "ALLOW"
   #   logged             = true
-  #   sequence_number    = 30
+  #   sequence_number    = 40
   # }
 
   rule {
@@ -60,7 +60,7 @@ resource "nsxt_policy_security_policy" "vcf_fleet_mgmt_policy" {
     services           = [var.service_paths.https]
     action             = "ALLOW"
     logged             = true
-    sequence_number    = 40
+    sequence_number    = 50
   }
 
   rule {
@@ -71,7 +71,7 @@ resource "nsxt_policy_security_policy" "vcf_fleet_mgmt_policy" {
     services           = [var.service_paths.https]
     action             = "ALLOW"
     logged             = true
-    sequence_number    = 50
+    sequence_number    = 60
   }
 
   rule {
@@ -82,7 +82,7 @@ resource "nsxt_policy_security_policy" "vcf_fleet_mgmt_policy" {
     services           = [var.service_paths.kubernetes_api_6443]
     action             = "ALLOW"
     logged             = true
-    sequence_number    = 60
+    sequence_number    = 70
   }
 
   rule {
@@ -93,7 +93,7 @@ resource "nsxt_policy_security_policy" "vcf_fleet_mgmt_policy" {
     services           = [var.service_paths.https]
     action             = "ALLOW"
     logged             = true
-    sequence_number    = 70
+    sequence_number    = 80
   }
 
   rule {
@@ -103,6 +103,6 @@ resource "nsxt_policy_security_policy" "vcf_fleet_mgmt_policy" {
     services           = []
     action             = "ALLOW"
     logged             = true
-    sequence_number    = 80
+    sequence_number    = 90
   }
 }

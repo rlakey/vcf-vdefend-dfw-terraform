@@ -43,6 +43,16 @@ variable "vcf_sddcmgr" {
   description = "SDDC Manager VM name"
 }
 
+variable "vcfops_net_platform" {
+  type        = list(string)
+  description = "VCF Operations for Networks Platform VM Names"
+}
+
+variable "vcfops_net_collector" {
+  type        = list(string)
+  description = "VCF Operations for Networks Collector VM Names"
+}
+
 # Management Domain Components
 variable "vcf_m01_vcenter" {
   type        = string

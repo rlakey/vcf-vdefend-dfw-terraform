@@ -19,16 +19,49 @@ variable "nsx_password" {
 variable "dns_servers" {
   type        = list(string)
   description = "DNS server IP addresses"
+
+  validation {
+    condition     = length(var.dns_servers) > 0
+    error_message = "You must provide at least one VM name in the list."
+  }
+ 
+  validation {
+    # Loops through the list, trims spaces, checks the length, and ensures ALL evaluate to true
+    condition     = alltrue([for vm in var.dns_servers : length(trimspace(vm)) > 0])
+    error_message = "VM names cannot be blank strings or contain only spaces."
+  }
 }
 
 variable "ntp_servers" {
   type        = list(string)
   description = "NTP server IP addresses"
+
+  validation {
+    condition     = length(var.ntp_servers) > 0
+    error_message = "You must provide at least one VM name in the list."
+  }
+ 
+  validation {
+    # Loops through the list, trims spaces, checks the length, and ensures ALL evaluate to true
+    condition     = alltrue([for vm in var.ntp_servers : length(trimspace(vm)) > 0])
+    error_message = "VM names cannot be blank strings or contain only spaces."
+  }
 }
 
 variable "syslog_servers" {
   type        = list(string)
   description = "NTP server IP addresses"
+
+  validation {
+    condition     = length(var.syslog_servers) > 0
+    error_message = "You must provide at least one VM name in the list."
+  }
+ 
+  validation {
+    # Loops through the list, trims spaces, checks the length, and ensures ALL evaluate to true
+    condition     = alltrue([for vm in var.syslog_servers : length(trimspace(vm)) > 0])
+    error_message = "VM names cannot be blank strings or contain only spaces."
+  }
 }
 
 # VCF Fleet Management
@@ -38,7 +71,7 @@ variable "vcfops" {
 
   validation {
     condition     = length(var.vcfops) > 0
-    error_message = "You must provide at least one VM name in the vcfops list."
+    error_message = "You must provide at least one VM name in the list."
   }
  
   validation {
@@ -51,11 +84,33 @@ variable "vcfops" {
 variable "vcfops_cp" {
   type        = list(string)
   description = "VCF Operations Cloud Proxy VM names"
+
+  validation {
+    condition     = length(var.vcfops_cp) > 0
+    error_message = "You must provide at least one VM name in the list."
+  }
+ 
+  validation {
+    # Loops through the list, trims spaces, checks the length, and ensures ALL evaluate to true
+    condition     = alltrue([for vm in var.vcfops_cp : length(trimspace(vm)) > 0])
+    error_message = "VM names cannot be blank strings or contain only spaces."
+  }
 }
 
 variable "vcf_lic" {
   type        = list(string)
   description = "VCF License Server VM names"
+
+  validation {
+    condition     = length(var.vcf_lic) > 0
+    error_message = "You must provide at least one VM name in the list."
+  }
+ 
+  validation {
+    # Loops through the list, trims spaces, checks the length, and ensures ALL evaluate to true
+    condition     = alltrue([for vm in var.vcf_lic : length(trimspace(vm)) > 0])
+    error_message = "VM names cannot be blank strings or contain only spaces."
+  }
 }
 
 variable "vcf_mgmt_svcs" {
@@ -70,7 +125,28 @@ variable "vcf_automation" {
 
 variable "vcf_sddcmgr" {
   type        = list(string)
-  description = "SDDC Manager VM name"
+  description = "SDDC Manager VM names"
+
+  validation {
+    condition     = length(var.vcf_sddcmgr) > 0
+    error_message = "You must provide at least one VM name in the list."
+  }
+ 
+  validation {
+    # Loops through the list, trims spaces, checks the length, and ensures ALL evaluate to true
+    condition     = alltrue([for vm in var.vcf_sddcmgr : length(trimspace(vm)) > 0])
+    error_message = "VM names cannot be blank strings or contain only spaces."
+  }
+}
+
+variable "vcfops_net_platform" {
+  type        = list(string)
+  description = "VCF Operations for Networks Platform VM Names"
+}
+
+variable "vcfops_net_collector" {
+  type        = list(string)
+  description = "VCF Operations for Networks Collector VM Names"
 }
 
 # VCF Management Domain (M01) Components
@@ -82,6 +158,17 @@ variable "vcf_m01_vcenter" {
 variable "vcf_m01_nsxmgr" {
   type        = list(string)
   description = "Management Domain NSX Manager VM names"
+
+  validation {
+    condition     = length(var.vcf_m01_nsxmgr) > 0
+    error_message = "You must provide at least one VM name in the list."
+  }
+ 
+  validation {
+    # Loops through the list, trims spaces, checks the length, and ensures ALL evaluate to true
+    condition     = alltrue([for vm in var.vcf_m01_nsxmgr : length(trimspace(vm)) > 0])
+    error_message = "VM names cannot be blank strings or contain only spaces."
+  }
 }
 
 variable "vcf_m01_nsx_edges" {

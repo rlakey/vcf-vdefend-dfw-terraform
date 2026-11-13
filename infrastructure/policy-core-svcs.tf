@@ -11,7 +11,7 @@ resource "nsxt_policy_security_policy" "icmp" {
     display_name       = "Allow ICMP"
     source_groups      = []
     destination_groups = []
-    services           = [data.nsxt_policy_service.icmp_request.path, data.nsxt_policy_service.icmp_reply.path, data.nsxt_policy_service.icmp_dest_un.path, data.nsxt_policy_service.icmp_ttl.path]
+    services           = [var.service_paths.icmp_request, var.service_paths.icmp_reply, var.service_paths.icmp_dest_un, var.service_paths.icmp_ttl]
     action             = "ALLOW"
     logged             = true
   }
@@ -29,9 +29,9 @@ resource "nsxt_policy_security_policy" "core_services" {
   rule {
     display_name       = "Allowed DNS Servers"
     source_groups      = []
-    destination_groups = [nsxt_policy_group.sg-core-svcs-dns.path]
-    services           = [data.nsxt_policy_service.dns_udp.path, data.nsxt_policy_service.dns_tcp.path]
-    profiles           = [data.nsxt_policy_context_profile.cxt_dns.path]
+    destination_groups = [var.group_paths.sg-core-svcs-dns]
+    services           = [var.service_paths.dns_udp, var.service_paths.dns_tcp]
+    profiles           = [var.context_profile_paths.cxt_dns]
     action             = "ALLOW"
     logged             = true
   }
@@ -39,8 +39,8 @@ resource "nsxt_policy_security_policy" "core_services" {
   rule {
     display_name       = "Allowed NTP Servers"
     source_groups      = []
-    destination_groups = [nsxt_policy_group.sg-core-svcs-ntp.path]
-    services           = [data.nsxt_policy_service.ntp.path]
+    destination_groups = [var.group_paths.sg-core-svcs-ntp]
+    services           = [var.service_paths.ntp]
     action             = "ALLOW"
     logged             = true
   }
@@ -48,8 +48,8 @@ resource "nsxt_policy_security_policy" "core_services" {
   rule {
     display_name       = "Allowed Syslog Servers"
     source_groups      = []
-    destination_groups = [nsxt_policy_group.sg-core-svcs-syslog.path]
-    services           = [data.nsxt_policy_service.syslog_tcp.path, data.nsxt_policy_service.syslog_udp.path, nsxt_policy_service.logs_tcp_9543.path, nsxt_policy_service.logs_tcp_9000.path, nsxt_policy_service.syslog_tcp_1514.path, nsxt_policy_service.syslog_tcp_6514.path]
+    destination_groups = [var.group_paths.sg-core-svcs-syslog]
+    services           = [var.service_paths.syslog_tcp, var.service_paths.syslog_udp, var.service_paths.logs_tcp_9543, var.service_paths.logs_tcp_9000, var.service_paths.syslog_tcp_1514, var.service_paths.syslog_tcp_6514]
     action             = "ALLOW"
     logged             = true
   }
@@ -58,7 +58,7 @@ resource "nsxt_policy_security_policy" "core_services" {
     display_name       = "Deny Unknown Core Services"
     source_groups      = []
     destination_groups = []
-    services           = [data.nsxt_policy_service.dns_udp.path, data.nsxt_policy_service.dns_tcp.path, data.nsxt_policy_service.ntp.path, data.nsxt_policy_service.syslog_tcp.path, data.nsxt_policy_service.syslog_udp.path, nsxt_policy_service.logs_tcp_9543.path, nsxt_policy_service.logs_tcp_9000.path, nsxt_policy_service.syslog_tcp_1514.path, nsxt_policy_service.syslog_tcp_6514.path]
+    services           = [var.service_paths.dns_udp, var.service_paths.dns_tcp, var.service_paths.ntp, var.service_paths.syslog_tcp, var.service_paths.syslog_udp, var.service_paths.logs_tcp_9543, var.service_paths.logs_tcp_9000, var.service_paths.syslog_tcp_1514, var.service_paths.syslog_tcp_6514]
     action             = "ALLOW"
     logged             = true
   }

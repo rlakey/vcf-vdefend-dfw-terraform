@@ -6,5 +6,21 @@ output "group_paths" {
     sg-core-svcs-ntp              = nsxt_policy_group.sg-core-svcs-ntp.path
     sg-core-svcs-syslog           = nsxt_policy_group.sg-core-svcs-syslog.path
 
+    # VCF Groups
+    sg-vcf-operations             = nsxt_policy_group.sg-vcf-operations.path
+    sg-vcf-operations-proxy       = nsxt_policy_group.sg-vcf-operations-proxy.path
+    sg-vcf-license                = nsxt_policy_group.sg-vcf-license.path
+    sg-vcf-automation             = nsxt_policy_group.sg-vcf-automation.path
+    sg-vcf-mgmt-svcs              = nsxt_policy_group.sg-vcf-mgmt-svcs.path
+    sg-vcf-sddcmgr                = nsxt_policy_group.sg-vcf-sddcmgr.path
+    sg-vcf-m01-vcenter            = nsxt_policy_group.sg-vcf-m01-vcenter.path
+    sg-vcf-m01-nsxmgr             = nsxt_policy_group.sg-vcf-m01-nsxmgr.path
+    sg-vcf-m01-esx                = nsxt_policy_group.sg-vcf-m01-esx.path
+    sg-vcf-m01-nsx-edges          = nsxt_policy_group.sg-vcf-m01-nsx-edges.path
+    sg-vcf-m01-sup01              = nsxt_policy_group.sg-vcf-m01-sup01.path
+    sg-vcf-fleet                  = nsxt_policy_group.sg-vcf-fleet.path
+    sg-vcf-m01                    = nsxt_policy_group.sg-vcf-m01.path
+    sg-vcf-all                    = nsxt_policy_group.sg-vcf-all.path
+
   }
 }
